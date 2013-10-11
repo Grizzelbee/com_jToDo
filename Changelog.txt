@@ -1,19 +1,31 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
+Änderungen in Version 1.0.3:
+Frontend:
+[+] Der Besuch einer Projektseite durch einen angemeldeten Benutzer wird protokolliert. Das ist für die Neu/Aktualisiert-Anzeige
+    notwendig
+[+] ToDo-Umschaltlinks dürfen nur aktiv gesetzt werden, wenn der Besucher angemeldet ist. Kein Öffentlichlicher Zugriff darauf.
+
 Backend:
-* Kategorien pflegen 
-Datenfelder:
-id, name, published, ordering
+[+] Die Seiteneinstellungen können pro Menüeintrag relativ weitreichend konfiguriert werden
+    -> Logo kann ausgewählt werden
+    -> ToDo/Done Icon kann ausgewählt werden
+    -> Seitenüberschrift kann gesetzt werden
+    -> Seitenüberschrift und Logo können getrennt ein- und ausgeschaltet werden
+[+] Es können eigene Grafiken für Logo / Done- und ToDo-Icon verwendet werden.   
+    Dazu müssen sie nur in \media\com_jtodo\images\logos bzw. \media\com_jtodo\images\stateindicators
+    abgelegt werden.
+[!] Die beiden Daten "inserted" und "updated" werden jetzt korrekt in die Datenbank geschrieben.
 
+Offene ToDos:
+-------------
 
-* ToDo-Einträge pflegen
-Datenfelder:
-id, name, published, startdate, enddate, fk_category, inserted, updated, status
-
-
-* Zuweisen eines ToDos an mehrere Joomla-Benutzer (1:n)
-Datenfelder:
-id, fk_todo, fk_user
+Backend:
+----
+[?] Gruppenverantwortlichen pro kategorie setzen?
+[?] Einzelverantwortlichen pro ToDo setzen?
+[?] Bilder für Logo und Stateindicators über die Optionen der Komponente hochladen
 
 Frontend:
+[+] ToDo-Notifier Plugin schreiben

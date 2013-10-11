@@ -66,9 +66,9 @@ class jTODOModelTodo extends JModelAdmin
             $data = $this->getItem();
             if ($data->id == 0)
             {
-                $data->inserted = time();
+                $data->inserted = date('Y-m-d', time());
             }
-            $data->updated  = time();
+            $data->updated  = date('Y-m-d', time());
         }
         return $data;	
     }

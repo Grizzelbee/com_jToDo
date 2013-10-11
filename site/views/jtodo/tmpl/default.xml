@@ -34,7 +34,30 @@
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
+
+            <field  name        = "logo_image"
+                    type        = "imagelist"
+                    label       = "COM_JTODO_FIELD_LOGOIMAGE_LABEL"
+                    description = "COM_JTODO_FIELD_LOGOIMAGE_LABEL_DESC"
+                    directory   = "/media/com_jtodo/images/logos"
+                    default     = "todo_list.png">
+            </field>
             
+            <field  name        = "tick_image"
+                    type        = "imagelist"
+                    label       = "COM_JTODO_FIELD_TICKIMAGE_LABEL"
+                    description = "COM_JTODO_FIELD_TICKIMAGE_LABEL_DESC"
+                    directory   = "/media/com_jtodo/images/stateindicators"
+                    default     = "done1.png">
+            </field>
+
+            <field  name        = "cross_image"
+                    type        = "imagelist"
+                    label       = "COM_JTODO_FIELD_CROSSIMAGE_LABEL"
+                    description = "COM_JTODO_FIELD_CROSSIMAGE_LABEL_DESC"
+                    directory   = "/media/com_jtodo/images/stateindicators"
+                    default     = "todo1.png">
+            </field>
         </fieldset>    
     </fields>
     

@@ -122,14 +122,19 @@ class jTODOModeljTODO extends JModel
         }
     }
     
-    /*
-    function getLastUserVisitDate( $userid ) 
+    function getLastUserVisitDate( $userid , $projectid) 
     { 
         $db = JFactory::getDBO(); 
-        $query = "select * from #__scet_visits as visits where juserid = $userid"; 
+        $query = $db->getQuery(true);
+        //$query = "select * from #__jtodo_visits as visits where juserid = $userid"; 
+        $query->select('*');
+        $query->from('#__jtodo_visits');
+        $query->where('juserid = '.(int)$userid);
+        $query->where('fk_project = '.(int)$projectid);
+
         $db->setQuery( $query ); 
-        $rows = $db->loadObjectList(); 
-        return $rows; 
+        $row = $db->loadObject(); 
+        return $row; 
     } 
 
         
@@ -137,11 +142,10 @@ class jTODOModeljTODO extends JModel
     { 
         $db = JFactory::getDBO(); 
         if ($isNewUser) {
-            $db->insertObject('#__scet_visits', $lastVisit, 'id');
+            $db->insertObject('#__jtodo_visits', $lastVisit, 'id');
         } else {
-            $db->updateObject('#__scet_visits', $lastVisit, 'id');
+            $db->updateObject('#__jtodo_visits', $lastVisit, 'id');
         };
     } 
-    */        
 } 
 ?>

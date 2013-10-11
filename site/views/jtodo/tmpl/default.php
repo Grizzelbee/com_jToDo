@@ -16,13 +16,12 @@ $document->addStyleSheet('components/com_jtodo/assets/css/jtodo.css');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
-
 ?> 
 <div>
     <?php
     if ( $this->params->get('show_logo') == 1) 
     {
-        echo '<img style="float:right;" src="' . $this->baseurl . '/media/com_jtodo/images/logo.png' . '" alt="" title=""/>';
+        echo '<img style="float:right;" src="' . $this->baseurl . '/media/com_jtodo/images/logos/' . $this->params->get('logo_image') . '" alt="" title=""/>';
     }
     if ( $this->params->get('show_page_heading') == 1) 
     {
@@ -39,9 +38,15 @@ JHtml::_('behavior.keepalive');
 </div>
 <div class="page_body"> 
 <?php  
-    $user = JFactory::getUser(); 
+    $user    = JFactory::getUser(); 
+  	$isGuest = $user->guest;
     $language = $user->getParam('language', 'de-DE');
 	$now = date('Y-m-d', time() );
+    
+    // Nur Besuche von registrierten Usern merken - von Gästen ergibt das keinen Sinn
+    if (!$isGuest){
+        $this->setLastVisitTimestamp($user, $now);
+    };
  ?>    
     
 <form action="<?php echo JRoute::_('index.php'); ?>" method="post" name="siteForm">
@@ -71,7 +76,7 @@ JHtml::_('behavior.keepalive');
                     $link = JRoute::_( 'index.php?option=com_jtodo&task=jtodo.submit&id='.(int)$item->id );
                     ?>
                         <tr  class="HiliteMe_future">
-                            <td align="left"><?php echo $this->getStatusImage( $item->status, $link ); ?></td>
+                            <td align="left"><?php echo $this->getStatusImage( $item->status, $link, $isGuest ); ?></td>
                             <td><?php echo $item->name; ?></td>
                             <td align="center"><?php echo JHTML::_('date', $item->targetdate,   JText::_('COM_JTODO_DATE_FORMAT_1'), 'UTC');?></td>
                         </tr>

@@ -5,12 +5,12 @@
 // @file        : site/jtodo.php (Joomla-Entry-File)                    //
 // @implements  :                                                       //
 // @description : Main-Frontend-Entry-File for the jToDo-Component      //
-// Version      : 1.0.6                                                 //
+// Version      : 1.0.7                                                 //
 // *********************************************************************//
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-define('_JTODO_VERSION','1.0.6');
+define('_JTODO_VERSION','1.0.7');
 
 // import joomla controller library
 jimport('joomla.application.component.controller');

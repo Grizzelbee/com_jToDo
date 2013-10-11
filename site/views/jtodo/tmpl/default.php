@@ -5,7 +5,7 @@
 // @file        : site/views/jtodo/tmpl/default.php                     //
 // @implements  :                                                       //
 // @description : Entry-File for the jToDo-Standard-View                //
-// Version      : 1.0.4                                                 //
+// Version      : 1.0.5                                                 //
 // *********************************************************************//
 
 //Aufruf nur durch Joomla! zulassen
@@ -45,7 +45,7 @@ JHtml::_('behavior.keepalive');
     
     // Nur Besuche von registrierten Usern merken - von Gästen ergibt das keinen Sinn
     if (!$isGuest){
-        $lastUserVisit = $this->model->getLastUserVisitDate($user->id, $this->project->id);
+        $lastUserVisit = $this->model->getLastUserVisitDate($user->id, $this->project->id)->lastvisitdate;
         $this->setLastVisitTimestamp($user, $now);
     };
  ?>    

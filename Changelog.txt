@@ -1,6 +1,10 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
+Änderungen in Version 1.0.5:
+Frontend:
+[!] Es hatte sich ein Fehler beim Aktualisieren der Besuchsaufzeichungen eingeschlichen. Das ist jetzt wieder behoben.
+
 Änderungen in Version 1.0.4:
 Frontend:
 [+] Neu/Aktualisiert-Anzeige funktioniert jetzt

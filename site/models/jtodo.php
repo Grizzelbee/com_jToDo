@@ -5,7 +5,7 @@
 // @file        : site/models/jtodo.php                                 //
 // @implements  : Class jTODOModeljTODO                                 //
 // @description : Model for the DB-Manipulation of the jToDo-List       //
-// Version      : 1.0.4                                                 //
+// Version      : 1.0.5                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -129,13 +129,13 @@ class jTODOModeljTODO extends JModel
     { 
         $db = JFactory::getDBO(); 
         $query = $db->getQuery(true);
-        $query->select('lastvisitdate');
+        $query->select('*');
         $query->from('#__jtodo_visits');
         $query->where('juserid = '.(int)$userid);
         $query->where('fk_project = '.(int)$projectid);
 
         $db->setQuery( $query ); 
-        $lastVisitDate = $db->loadResult(); 
+        $lastVisitDate = $db->loadObject(); 
         return $lastVisitDate; 
     } 
 

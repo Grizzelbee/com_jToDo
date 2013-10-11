@@ -5,7 +5,7 @@
 // @file        : site/views/jtodo/view.html.php                        //
 // @implements  : Class jTODOViewjTODO                                  //
 // @description : Entry-File for the jToDo-Standard-View                //
-// Version      : 1.0.4                                                 //
+// Version      : 1.0.5                                                 //
 // *********************************************************************//
 
 defined('_JEXEC') or die( 'Restricted Access' ); 

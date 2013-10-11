@@ -1,0 +1,17 @@
+<style type="text/css">
+    
+    .headline{ float:left; margin-top:80px }
+    
+    .logo{ float:right; }
+    
+    div.page_body{ display:block; float:none; clear:both;}
+    
+    .HiliteMe_past{ color : grey; font-weight: normal; }
+  
+    .HiliteMe_future{ color : $666666; font-weight: bold; font-family:arial; font-size:1.2em;}
+
+    tr.HiliteMe_future:hover { background-color: #FDFAD7; }
+  
+    tr.HiliteMe_past:hover { background-color: #FDFAD7; }
+    
+</style>

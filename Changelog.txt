@@ -1,0 +1,19 @@
+jToDo - Eine ToDo Liste für Joomla
+**********************************
+
+Backend:
+* Kategorien pflegen 
+Datenfelder:
+id, name, published, ordering
+
+
+* ToDo-Einträge pflegen
+Datenfelder:
+id, name, published, startdate, enddate, fk_category, inserted, updated, status
+
+
+* Zuweisen eines ToDos an mehrere Joomla-Benutzer (1:n)
+Datenfelder:
+id, fk_todo, fk_user
+
+Frontend:

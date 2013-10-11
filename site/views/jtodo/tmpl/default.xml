@@ -28,6 +28,7 @@
                     label       = "COM_MENUS_PAGE_OPTIONS_LABEL">
             <field  name        = "show_logo"
                     type        = "radio"
+                    class       = "btn-group"
                     default     = "1"
                     label       = "COM_JTODO_FIELD_SHOWLOGO_LABEL"
                     description = "COM_JTODO_FIELD_SHOWLOGO_LABEL_DESC">

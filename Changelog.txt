@@ -1,6 +1,11 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
+Änderungen in Version 1.0.6:
+Backend:
+[!] Beim Klick auf das Erledigt-Status-Icon in der Todos-Listenansicht wurde der Freigegeben-Status geändert. 
+    Das ist jetzt behoben und der Erledigt-Status wird korrekt umgeschaltet.
+
 Änderungen in Version 1.0.5:
 Frontend:
 [!] Es hatte sich ein Fehler beim Aktualisieren der Besuchsaufzeichungen eingeschlichen. Das ist jetzt wieder behoben.

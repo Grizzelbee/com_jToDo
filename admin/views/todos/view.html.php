@@ -5,7 +5,7 @@
 // @file        : admin/views/todos/view.html.php                       //
 // @implements  : Class jToDoViewTodos                                  //
 // @description : Main-entry for the Todos-ListView                     //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.6                                                 //
 // *********************************************************************//
 
 // no direct access to this file
@@ -51,6 +51,7 @@ class jTODOViewTodos extends JView
         JToolBarHelper::divider();
         JToolBarHelper::Preferences('COM_JTODO');    
     }
+    
     function getStatusImage($StatusField, $positiveAction, $negativeAction, $rowID) 
     {
         $app      = JFactory::getApplication();
@@ -59,9 +60,9 @@ class jTODOViewTodos extends JView
         
         $ausgabe = '<a class="jgrid" href="javascript:void(0);" onclick="return listItemTask(';
         if ($StatusField) { 
-            $ausgabe = $ausgabe . ' \'cb'.$rowID.'\', \''.$negativeAction.'\')" title="'.JText::_('COM_SCET_CHANGE_STATUS').'"><img src="' . $template . '/images/admin/tick.png"';
+            $ausgabe = $ausgabe . ' \'cb'.$rowID.'\', \''.$negativeAction.'\')" title="'.JText::_('COM_JTODO_TAG_NOT_DONE').'"><img src="' . $template . '/images/admin/tick.png"';
         } else {
-            $ausgabe = $ausgabe . ' \'cb'.$rowID.'\',\''.$positiveAction.'\')" title="'.JText::_('COM_SCET_CHANGE_STATUS').'"><img src="' . $template . '/images/admin/publish_x.png"';
+            $ausgabe = $ausgabe . ' \'cb'.$rowID.'\',\''.$positiveAction.'\')" title="'.JText::_('COM_JTODO_TAG_DONE').'"><img src="' . $template . '/images/admin/publish_x.png"';
         };
         $ausgabe = $ausgabe . 'border="0" alt="" /></a>';
         

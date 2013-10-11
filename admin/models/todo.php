@@ -6,7 +6,7 @@
 // @implements  : Class jTODOModelTodo                                  //
 // @description : Model for the DB-Manipulation of a single             //
 //                jTODO-ToDo; not for the list                          //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.6                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -79,12 +79,32 @@ class jTODOModelTodo extends JModelAdmin
 		// Lets load the data if it doesn't already exist
 		if (empty( $this->_categories ))
 		{
-			$query             = 'SELECT id, name, FROM #__jtodo_categories where published = 1';
+			$query = 'SELECT id, name, FROM #__jtodo_categories where published = 1';
 			$this->_categories = $this->_getList( $query );
 		}
 		return $this->_categories;
 	}
     
+    public function setItemDoneStatus($cid, $newStatus)
+    {
+        $db    = JFactory::getDBO();
+        $query = $db->getQuery(true);
 
+        $query->update('#__jtodo_todos');  
+        $query->set('status = '.(int)$newStatus);  
+        $query->set('updated = NULL');  
+        $query->set('done_at = NULL');  
+        $query->set('done_by_juserid = NULL');  
+        $query->WHERE('id in ('.implode(',', $cid).');');
+        
+        $db->setQuery($query);
+        $data = $db->Query();
+        
+        if ( $db->getAffectedRows() >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>

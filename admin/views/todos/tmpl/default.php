@@ -5,7 +5,7 @@
 // @file        : admin/views/todos/tmpl/default.php                    //
 // @implements  :                                                       //
 // @description : Template for the ToDos-List-View                      //
-// Version      : 1.0.2                                                 //
+// Version      : 1.0.6                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -78,7 +78,7 @@ JHTML::_('behavior.multiselect');
         <tbody>
             <?php  
             foreach($this->items as $i => $item) : 
-            $link = JRoute::_( 'index.php?option=com_jtodo&task=todo.edit&id='.(int)$item->id );
+            $link = JRoute::_( 'index.php?option=com_jtodo&task=todo.edit&cid[]='.(int)$item->id );
             ?>
                 <tr class="row<?php echo $i % 2; ?>">
                     <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
@@ -86,7 +86,7 @@ JHTML::_('behavior.multiselect');
                     <td><a href="<?php echo $link; ?>"><?php echo $item->name; ?></a></td>
                     <td align="center"><?php echo JHTML::_('date', $item->targetdate,   JText::_('DATE_FORMAT1'), 'UTC');?></td>
                     <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'todos.' ); ?></td>
-                    <td align="center"><?php echo JHTML::_('jgrid.published', $item->status, $i, 'todos.' ); ?></td>
+                    <td align="center"><?php echo $this->getStatusImage($item->status, 'todos.tagAsDone', 'todos.tagAsNotDone', $i); ?></td>
                     <td align="center"><?php echo $item->project;?></td>
                     <td align="center"><?php echo $item->category;?></td>
                     <td><?php echo $item->id; ?></td>

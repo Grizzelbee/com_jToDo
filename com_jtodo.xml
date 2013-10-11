@@ -2,8 +2,8 @@
 <extension type="component" version="2.5.0" client = "site" method="upgrade">
 
     <name>com_jtodo</name> 
-    <version>1.0.8</version>
-    <creationDate>30.01.2013</creationDate>
+    <version>1.0.9</version>
+    <creationDate>14.02.2013</creationDate>
     <author>Hanjo Hingsen</author>
 	<authorEmail>webmaster@treu-zu-kaarst.de</authorEmail>
 	<authorUrl>http://www.treu-zu-kaarst.de</authorUrl>
@@ -14,6 +14,7 @@
 
     <languages folder="site/language">
         <language tag="de-DE">de-DE/de-DE.com_jtodo.ini</language>
+        <language tag="en-GB">en-GB/en-GB.com_jtodo.ini</language>
     </languages>
     
     <files folder="site"> 
@@ -69,6 +70,8 @@
         <languages folder="admin/language">
             <language tag="de-DE">de-DE/de-DE.com_jtodo.ini</language>
             <language tag="de-DE">de-DE/de-DE.com_jtodo.sys.ini</language>
+            <language tag="en-GB">en-GB/en-GB.com_jtodo.ini</language>
+            <language tag="en-GB">en-GB/en-GB.com_jtodo.sys.ini</language>
         </languages>
         
         <files folder="admin"> 

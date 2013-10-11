@@ -1,29 +1,43 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
+Änderungen in Version 1.0.9:
+Backend und Frontend:
+[+] Englische Sprachdateien erstellt
+[~] kleine Anpassungen an den deutschen Sprachdateien vorgenommen.
+Backend:
+[+] Alle markierten ToDos über einen Toolbarbutton in einem Rutsch auf erledigt/nicht erledigt setzen.
+[-] Einstellungen Toolbar-Button überall entfernt. Die Komponente als solche hat keine Einstellungen mehr.
+2013-02-14
+
 Änderungen in Version 1.0.8:
 Backend:
 [+] Auf den verschiedenen Management-Seiten gibt es jetzt Buttons um zwischen den Managern 
     schneller umschalten zu können, weil der Weg über das Menü sehr mühselig ist.
+2013-02-06
 
 Änderungen in Version 1.0.7:
 Backend:
-[!] Beim Klick auf den Link eines ToDo-Eintrages wurde dieser nicht zum editieren geöffnert, sondern ein
-    neuer (leerer) Eintrag  angezeigt. Das solte so nicht sein. eintrag wird jetzt wieder zum editieren geöffnet.
+[!] Beim Klick auf den Link eines ToDo-Eintrages wurde dieser nicht zum Editieren geöffnert, sondern ein
+    neuer (leerer) Eintrag  angezeigt. Das solte so nicht sein. Eintrag wird jetzt wieder zum editieren geöffnet.
+2013-01-23
 
 Änderungen in Version 1.0.6:
 Backend:
 [!] Beim Klick auf das Erledigt-Status-Icon in der Todos-Listenansicht wurde der Freigegeben-Status geändert. 
     Das ist jetzt behoben und der Erledigt-Status wird korrekt umgeschaltet.
+2013-01-07
 
 Änderungen in Version 1.0.5:
 Frontend:
 [!] Es hatte sich ein Fehler beim Aktualisieren der Besuchsaufzeichungen eingeschlichen. Das ist jetzt wieder behoben.
+2012-12-07
 
 Änderungen in Version 1.0.4:
 Frontend:
 [+] Neu/Aktualisiert-Anzeige funktioniert jetzt
 [+] Beim Wechslen des ToDo-Status werden jetzt weitere Daten, wie Updatezeitpunkt etc. korrekt gesetzt.
+2012-11-23
     
 Änderungen in Version 1.0.3:
 Frontend:
@@ -41,15 +55,12 @@ Backend:
     Dazu müssen sie nur in \media\com_jtodo\images\logos bzw. \media\com_jtodo\images\stateindicators
     abgelegt werden.
 [!] Die beiden Daten "inserted" und "updated" werden jetzt korrekt in die Datenbank geschrieben.
+2012-11-14
 
 Offene ToDos:
 -------------
-
 Backend:
 ----
 [?] Gruppenverantwortlichen pro kategorie setzen?
 [?] Einzelverantwortlichen pro ToDo setzen?
 [?] Bilder für Logo und Stateindicators über die Optionen der Komponente hochladen
-
-Frontend:
-[+] ToDo-Notifier Plugin schreiben

@@ -5,7 +5,7 @@
 // @file        : admin/views/categories/view.html.php                  //
 // @implements  : Class jTODOViewCategories                             //
 // @description : Main-entry for the categories-Listview                //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.9                                                 //
 // *********************************************************************//
 
 // no direct access to this file
@@ -46,9 +46,6 @@ class jTODOViewCategories extends JView
         JToolBarHelper::divider();
         JToolBarHelper::publishList('categories.publish');
         JToolBarHelper::unpublishList('categories.unpublish');
-        JToolBarHelper::divider();
-        JToolBarHelper::Preferences('COM_JTODO');    
-
     }
 } 
 ?>

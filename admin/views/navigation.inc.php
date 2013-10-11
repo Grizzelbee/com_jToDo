@@ -1,4 +1,13 @@
 <?php 
+// *********************************************************************//
+// Project      : jToDo for Joomla                                      //
+// @package     : com_jToDo                                             //
+// @file        : admin/views/navigation.inc.php                        //
+// @implements  :                                                       //
+// @description : Code-Snippet for the Menu-Toolbar which is used in    //
+//                in the List-Views                                     //
+// Version      : 1.0.8                                                //
+// *********************************************************************//
 // get document to add scripts or StyleSheets
 $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::root().'media/com_jtodo/css/views.css');

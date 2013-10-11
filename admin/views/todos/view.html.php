@@ -5,7 +5,7 @@
 // @file        : admin/views/todos/view.html.php                       //
 // @implements  : Class jToDoViewTodos                                  //
 // @description : Main-entry for the Todos-ListView                     //
-// Version      : 1.0.6                                                 //
+// Version      : 1.0.9                                                 //
 // *********************************************************************//
 
 // no direct access to this file
@@ -42,14 +42,15 @@ class jTODOViewTodos extends JView
         JHtml::stylesheet('com_jtodo/views.css', array(), true, false, false);
         JToolBarHelper::title(   JText::_( 'COM_JTODO_HEAD_TODOS_MANAGER' ), 'todo' );
         // Toolbar-Buttons
-        JToolBarHelper::addNewX('todo.add');
-        JToolBarHelper::editListX('todo.edit');
+        JToolBarHelper::addNew('todo.add');
+        JToolBarHelper::editList('todo.edit');
         JToolBarHelper::deleteList('COM_JTODO_DELETE_QUESTION', 'todos.delete');
         JToolBarHelper::divider();
         JToolBarHelper::publishList('todos.publish');
         JToolBarHelper::unpublishList('todos.unpublish');
         JToolBarHelper::divider();
-        JToolBarHelper::Preferences('COM_JTODO');    
+        JToolBarHelper::custom('todos.tagAsDone'  , 'publish',   'publish'  , 'COM_JTODO_SETDONE');
+        JToolBarHelper::custom('todos.tagAsUndone', 'unpublish', 'unpublish', 'COM_JTODO_SETUNDONE');
     }
     
     function getStatusImage($StatusField, $positiveAction, $negativeAction, $rowID) 

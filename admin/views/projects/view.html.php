@@ -5,7 +5,7 @@
 // @file        : admin/views/Projects/view.html.php                    //
 // @implements  : Class jTODOViewProjects                               //
 // @description : Main-entry for the Projects-Listview                  //
-// Version      : 1.0.2                                                 //
+// Version      : 1.0.9                                                 //
 // *********************************************************************//
 
 // no direct access to this file
@@ -46,9 +46,6 @@ class jTODOViewProjects extends JView
         JToolBarHelper::divider();
         JToolBarHelper::publishList('Projects.publish');
         JToolBarHelper::unpublishList('Projects.unpublish');
-        JToolBarHelper::divider();
-        JToolBarHelper::Preferences('COM_JTODO');    
-
     }
 } 
 ?>

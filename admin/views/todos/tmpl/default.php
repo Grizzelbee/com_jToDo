@@ -5,7 +5,7 @@
 // @file        : admin/views/todos/tmpl/default.php                    //
 // @implements  :                                                       //
 // @description : Template for the ToDos-List-View                      //
-// Version      : 1.0.8                                                 //
+// Version      : 1.0.9                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -87,7 +87,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                     <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->name; ?></a></td>
                     <td align="center"><?php echo JHTML::_('date', $item->targetdate,   JText::_('DATE_FORMAT1'), 'UTC');?></td>
                     <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'todos.' ); ?></td>
-                    <td align="center"><?php echo $this->getStatusImage($item->status, 'todos.tagAsDone', 'todos.tagAsNotDone', $i); ?></td>
+                    <td align="center"><?php echo $this->getStatusImage($item->status, 'todos.tagAsDone', 'todos.tagAsUndone', $i); ?></td>
                     <td align="center"><?php echo $item->project;?></td>
                     <td align="center"><?php echo $item->category;?></td>
                     <td><?php echo $item->id; ?></td>

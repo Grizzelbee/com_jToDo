@@ -1,6 +1,16 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
+
+Änderungen in Version 1.1.1:
+Backend:
+[!] Darstellungsfehler im IE bei den Formularen beseitigt, die einen Editor verwenden.
+2013-03-05
+
+Änderungen in Version 1.1.0:
+Backend:
+[!] Die Spalte Ordering war im Projekte- und Kategorien-View zu schmal und sortierte nicht richtig
+
 Änderungen in Version 1.0.9:
 Backend und Frontend:
 [+] Englische Sprachdateien erstellt

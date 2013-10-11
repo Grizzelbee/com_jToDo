@@ -5,7 +5,7 @@
 // @file        : admin/views/categories/tmpl/default.php               //
 // @implements  :                                                       //
 // @description : Template for the Categories-List-View                 //
-// Version      : 1.0.8                                                 //
+// Version      : 1.1.0                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -46,9 +46,9 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JTODO_PUBLISHED', 'published', $this->listDirn, $this->listOrder); ?>
                </th>
-                <th width="5%">
+                <th width="14%">
                     <span>
-                        <?php echo JHTML::_('grid.sort', 'COM_JTODO_ORDERING', 'id', $this->listDirn, $this->listOrder); ?>
+                        <?php echo JHTML::_('grid.sort', 'COM_JTODO_ORDERING', 'ordering', $this->listDirn, $this->listOrder); ?>
                         <?php echo JHTML::_('grid.order', $this->items, 'filesave.png', 'categories.saveorder'); ?>
                     </span>
                 </th>

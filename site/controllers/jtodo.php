@@ -6,7 +6,7 @@
 // @implements  : jTODOControllerjToDo                                  //
 // @description : Special-Frontend-Controller-File                      //
 //                for the jToDo-Component                               //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.4                                                 //
 // *********************************************************************//
  
 // No direct access.
@@ -34,9 +34,10 @@ class jTODOControllerjTODO extends JControllerForm
 
             // Get the data from the form POST
             $itemId = JRequest::getVar('id');
+            $userID = JRequest::getVar('uid');
  
             // Now update the loaded data to the database via a function in the model
-            $upditem = $model->changeTodoStatus($itemId);
+            $upditem = $model->changeTodoStatus($itemId, $userID);
  
             // check if ok and display appropriate message.  This can also have a redirect if desired.
             if (!$upditem) {

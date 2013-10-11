@@ -5,7 +5,7 @@
 // @file        : site/models/jtodo.php                                 //
 // @implements  : Class jTODOModeljTODO                                 //
 // @description : Model for the DB-Manipulation of the jToDo-List       //
-// Version      : 1.0.3                                                 //
+// Version      : 1.0.4                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -104,14 +104,17 @@ class jTODOModeljTODO extends JModel
         return $rows; 
     } 
 
-    function changeTodoStatus($itemId)
+    function changeTodoStatus($itemId, $userID)
     {
         $db = JFactory::getDBO(); 
         $query = $db->getQuery(true);
 
         $query->update('#__jtodo_todos');  
         $query->set('status = NOT status');  
-        $query->WHERE('id = ' . $itemId);
+        $query->set('updated = CURRENT_DATE');  
+        $query->set('done_at = CURRENT_DATE');  
+        $query->set('done_by_juserid = '.(int)$userID);  
+        $query->WHERE('id = ' . (int)$itemId);
         $db->setQuery($query);
         $data = $db->Query();
         
@@ -126,15 +129,14 @@ class jTODOModeljTODO extends JModel
     { 
         $db = JFactory::getDBO(); 
         $query = $db->getQuery(true);
-        //$query = "select * from #__jtodo_visits as visits where juserid = $userid"; 
-        $query->select('*');
+        $query->select('lastvisitdate');
         $query->from('#__jtodo_visits');
         $query->where('juserid = '.(int)$userid);
         $query->where('fk_project = '.(int)$projectid);
 
         $db->setQuery( $query ); 
-        $row = $db->loadObject(); 
-        return $row; 
+        $lastVisitDate = $db->loadResult(); 
+        return $lastVisitDate; 
     } 
 
         

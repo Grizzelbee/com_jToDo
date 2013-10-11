@@ -5,7 +5,7 @@
 // @file        : site/views/jtodo/view.html.php                        //
 // @implements  : Class jTODOViewjTODO                                  //
 // @description : Entry-File for the jToDo-Standard-View                //
-// Version      : 1.0.3                                                 //
+// Version      : 1.0.4                                                 //
 // *********************************************************************//
 
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -30,7 +30,6 @@ class jTODOViewjTODO extends JView
     
     function getStatusImage($todoStatus, $link, $isGuest=false)
     {
-    // @todo: isGuest auswerten und im Falle von isGuest nur das Bild ohne Link zurückliefern
         if ($todoStatus) 
         {
             $imagePath = $this->baseurl . '/media/com_jtodo/images/stateindicators/' . $this->params->get('tick_image');

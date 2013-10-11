@@ -14,4 +14,7 @@
   
     tr.HiliteMe_past:hover { background-color: #FDFAD7; }
     
+    #update{background-image:url(../../../../media/com_jtodo/images/update.png); background-repeat:no-repeat; padding-left:48px;}
+    #new{background-image:url(../../../../media/com_jtodo/images/new.png); background-repeat:no-repeat; padding-left:48px;}
+    
 </style>

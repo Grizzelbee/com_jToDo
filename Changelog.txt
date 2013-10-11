@@ -1,6 +1,11 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
+Änderungen in Version 1.0.4:
+Frontend:
+[+] Neu/Aktualisiert-Anzeige funktioniert jetzt
+[+] Beim Wechslen des ToDo-Status werden jetzt weitere Daten, wie Updatezeitpunkt etc. korrekt gesetzt.
+    
 Änderungen in Version 1.0.3:
 Frontend:
 [+] Der Besuch einer Projektseite durch einen angemeldeten Benutzer wird protokolliert. Das ist für die Neu/Aktualisiert-Anzeige

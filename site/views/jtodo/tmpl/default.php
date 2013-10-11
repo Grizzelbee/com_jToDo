@@ -5,7 +5,7 @@
 // @file        : site/views/jtodo/tmpl/default.php                     //
 // @implements  :                                                       //
 // @description : Entry-File for the jToDo-Standard-View                //
-// Version      : 1.0.3                                                 //
+// Version      : 1.0.4                                                 //
 // *********************************************************************//
 
 //Aufruf nur durch Joomla! zulassen
@@ -45,6 +45,7 @@ JHtml::_('behavior.keepalive');
     
     // Nur Besuche von registrierten Usern merken - von Gästen ergibt das keinen Sinn
     if (!$isGuest){
+        $lastUserVisit = $this->model->getLastUserVisitDate($user->id, $this->project->id);
         $this->setLastVisitTimestamp($user, $now);
     };
  ?>    
@@ -73,11 +74,23 @@ JHtml::_('behavior.keepalive');
                 <?php  
                 foreach($this->todos as $i => $item) : 
                 if ($category->id == $item->fk_category) {
-                    $link = JRoute::_( 'index.php?option=com_jtodo&task=jtodo.submit&id='.(int)$item->id );
+                    $link = JRoute::_( 'index.php?option=com_jtodo&task=jtodo.submit&id='.(int)$item->id.'&uid='.(int)$user->id );
+                    $updateID = '';
+                    if (!$isGuest) 
+                    {   
+                        if ($lastUserVisit <= $item->inserted)
+                        {
+                            $updateID = 'new';
+                        } else {
+                            if ($lastUserVisit <= $item->updated) {
+                                $updateID = 'update';
+                            }
+                        }
+                    }
                     ?>
                         <tr  class="HiliteMe_future">
                             <td align="left"><?php echo $this->getStatusImage( $item->status, $link, $isGuest ); ?></td>
-                            <td><?php echo $item->name; ?></td>
+                            <td id="<?php echo $updateID; ?>" ><?php echo $item->name; ?></td>
                             <td align="center"><?php echo JHTML::_('date', $item->targetdate,   JText::_('COM_JTODO_DATE_FORMAT_1'), 'UTC');?></td>
                         </tr>
                     <?php 

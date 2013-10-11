@@ -5,13 +5,14 @@
 // @file        : admin/views/Projects/tmpl/default.php                 //
 // @implements  :                                                       //
 // @description : Template for the Projects-List-View                   //
-// Version      : 1.0.2                                                 //
+// Version      : 1.0.8                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
 JHTML::_('behavior.tooltip'); 
 JHTML::_('behavior.multiselect'); 
+require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 ?> 
 <form action="<?php echo JRoute::_('index.php?option=com_jtodo&view=projects'); ?>" method="post" name="adminForm">
 

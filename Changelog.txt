@@ -1,6 +1,11 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
+Änderungen in Version 1.0.8:
+Backend:
+[+] Auf den verschiedenen Management-Seiten gibt es jetzt Buttons um zwischen den Managern 
+    schneller umschalten zu können, weil der Weg über das Menü sehr mühselig ist.
+
 Änderungen in Version 1.0.7:
 Backend:
 [!] Beim Klick auf den Link eines ToDo-Eintrages wurde dieser nicht zum editieren geöffnert, sondern ein

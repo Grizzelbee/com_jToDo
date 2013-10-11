@@ -5,21 +5,21 @@
 // @file        : admin/views/todos/tmpl/default.php                    //
 // @implements  :                                                       //
 // @description : Template for the ToDos-List-View                      //
-// Version      : 1.0.7                                                 //
+// Version      : 1.0.8                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
 JHTML::_('behavior.tooltip'); 
 JHTML::_('behavior.multiselect'); 
-
+require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 ?> 
 <form action="<?php echo JRoute::_('index.php?option=com_jtodo&view=todos'); ?>" method="post" name="adminForm">
 
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_SCET_ITEMS_SEARCH_FILTER'); ?>" />
+			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_JTODO_ITEMS_SEARCH_FILTER'); ?>" />
 			<button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
 			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>

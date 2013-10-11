@@ -36,10 +36,9 @@
             </field>
 
             <field  name        = "logo_image"
-                    type        = "imagelist"
+                    type        = "media"
                     label       = "COM_JTODO_FIELD_LOGOIMAGE_LABEL"
                     description = "COM_JTODO_FIELD_LOGOIMAGE_LABEL_DESC"
-                    directory   = "/media/com_jtodo/images/logos"
                     default     = "todo_list.png">
             </field>
             

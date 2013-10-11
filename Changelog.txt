@@ -1,6 +1,17 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
+Änderungen in Version 1.1.2:
+FrontEnd:
+    [~] Headerausgabe angepasst; Die Seitenüberschrift wird jetzt automatisch auf das Bild
+        zentiert.
+    [+] Joomla-konformen Komponentenheader eingebaut
+Backend:        
+    [~] Typ der Logo-Option im View von ImageList auf Media geändert. Dadurch können neue
+        Logogs einfach in das Images Verzeichnis von Joomla hochgeladen und verwendet werden.
+        Das scheint etwas nützlicher zu sein, als die feste Liste von Bildern.
+    [-] Jetzt überflüssige Bilder aus dem Mediaverzeichnis entfernt
+2013-04-15
 
 Änderungen in Version 1.1.1:
 Backend:

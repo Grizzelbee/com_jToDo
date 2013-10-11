@@ -5,7 +5,7 @@
 // @file        : site/views/jtodo/tmpl/default.php                     //
 // @implements  :                                                       //
 // @description : Entry-File for the jToDo-Standard-View                //
-// Version      : 1.0.5                                                 //
+// Version      : 1.1.2                                                 //
 // *********************************************************************//
 
 //Aufruf nur durch Joomla! zulassen
@@ -13,29 +13,35 @@ defined('_JEXEC')or die('Restricted access');
 // get document to add scripts or StyleSheets
 $document = JFactory::getDocument();
 $document->addStyleSheet('components/com_jtodo/assets/css/jtodo.css');
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.formvalidation');
-JHtml::_('behavior.keepalive');
+$menu       = &JSite::getMenu();
+$activeitem = $menu->getActive();
+$parentitem = $menu->getItem($activeitem->tree[0]);
+if ($parentitem == $activeitem)
+{
+    $componentheading_title = $activeitem->title;
+} else {
+   $componentheading_title = $parentitem->title .' :: '.$activeitem->title;
+}
 ?> 
-<div>
+<div class="componentheading"><b><?php echo $componentheading_title; ?></b></div>
+<div style="float: left; width:100%; vertical-align:middle; padding:0.3em;">
     <?php
     if ( $this->params->get('show_logo') == 1) 
     {
-        echo '<img style="float:right;" src="' . $this->baseurl . '/media/com_jtodo/images/logos/' . $this->params->get('logo_image') . '" alt="" title=""/>';
+    ?>
+        <img style="float:right;" src="<?php echo $this->params->get('logo_image'); ?>" alt="" title=""/>
+    <?php
     }
     if ( $this->params->get('show_page_heading') == 1) 
     {
-        if ($this->params->get('show_logo') == 1) 
-        {
-            echo '<h1  style="float:left; margin-top:70px;">' . $this->params->get('page_heading') .'</h1>';
-        } else {
-            echo '<h1  style="float:left;">' . $this->params->get('page_heading') .'</h1>';
-        }
-    echo '<p style="clear:both;"></p>';
-    echo '<p style="float:left;">' . $this->project->preamble . '</p>';
+    ?>
+        <h1 style="padding:2em;"><?php echo $this->params->get('page_heading'); ?></h1>
+    <?php
     }    
     ?>
 </div>
+<p style="clear:both;"></p>
+<p><?php echo $this->project->preamble; ?></p>
 <div class="page_body"> 
 <?php  
     $user    = JFactory::getUser(); 

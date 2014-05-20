@@ -6,7 +6,7 @@
 // @implements  : Class jTODOModelTodos                                 //
 // @description : Model for the DB-Manipulation of the                  //
 //                jToDo-ToDos-List                                      //
-// Version      : 1.1.3                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -56,7 +56,7 @@ class jTODOModelTodos extends JModelList
         }
 
         // Filter by published state
-        $published = $this->getState('filter.state');
+        $published = $this->getState('filter.published');
         if (is_numeric($published)) {
             $query->where('todos.published = '.(int)$published);
         }
@@ -97,17 +97,20 @@ class jTODOModelTodos extends JModelList
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
      
-        $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
+        $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state');
         $this->setState('filter.state', $state);
 
-        $status = $this->getUserStateFromRequest($this->context.'.filter.status', 'filter_status', '', 'string');
+        $status = $this->getUserStateFromRequest($this->context.'.filter.status', 'filter_status');
         $this->setState('filter.status', $status);
 
-        $project = $this->getUserStateFromRequest($this->context.'.filter.project', 'filter_project', '');
+        $project = $this->getUserStateFromRequest($this->context.'.filter.project', 'filter_project');
         $this->setState('filter.project', $project);
 
-        $category = $this->getUserStateFromRequest($this->context.'.filter.category', 'filter_category', '');
+        $category = $this->getUserStateFromRequest($this->context.'.filter.category', 'filter_category');
         $this->setState('filter.category', $category);
+
+        $published = $this->getUserStateFromRequest($this->context.'.filter.published', 'filter_published');
+        $this->setState('filter.published', $published);
 
         // List state information.
         parent::populateState('category, targetdate', 'ASC');

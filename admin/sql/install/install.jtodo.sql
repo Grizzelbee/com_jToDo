@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `#__jtodo_todos` (
     `targetdate`      DATE,
     `status`          TINYINT NOT NULL DEFAULT 0, 
     `published`       TINYINT NOT NULL,
+    `ordering`        SMALLINT NOT NULL,
     `inserted`        DATE,
     `updated`         DATE,
     `done_at`         DATE,

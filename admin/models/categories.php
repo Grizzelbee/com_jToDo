@@ -6,7 +6,7 @@
 // @implements  : Class jTODOModelCategories                            //
 // @description : Model for the DB-Manipulation of the                  //
 //                jToDo-Categories-List                                 //
-// Version      : 1.1.3                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -52,7 +52,7 @@ class jTODOModelCategories extends JModelList
         }
 
         // Filter by published state
-        $published = $this->getState('filter.state');
+        $published = $this->getState('filter.published');
         if (is_numeric($published)) {
             $query->where('published = '.(int) $published);
         }
@@ -78,6 +78,9 @@ class jTODOModelCategories extends JModelList
         $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
         $this->setState('filter.state', $state);
 
+        $published = $this->getUserStateFromRequest($this->context.'.filter.published', 'filter_published');
+        $this->setState('filter.published', $published);
+		
         // List state information.
         parent::populateState('ordering', 'ASC');
     }

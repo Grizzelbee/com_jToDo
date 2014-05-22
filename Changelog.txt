@@ -3,11 +3,13 @@ jToDo - Eine ToDo Liste für Joomla
 
 Änderungen in Version 1.1.4:
   [-] Komponente ist nicht mehr mit Joomla 2.5 kompatibel
-  [+] Joomla 3 Kompatibilität weiter ausgebaut; 
+  [+] Joomla 3 Kompatibilität weiter ausgebaut;
       Admin-Bereich ist jetzt auch in Joomla 3 hübsch
   [!] Diverse kleinere Fehler gefunden und behoben
   [!] ToDos können jetzt als ganze Liste erledigt / unerledigt gesetzt werden
   [!] Der Veröffentlicht-Filter funktioniert jetzt in allen drei Listenansichten
+  [~] Untermenü der Komponente auf J!3 Standart umgebaut
+  [+] Neuanordnung der Einträge per Drag & Drop Reorder
 2014-05-19
 
 Änderungen in Version 1.1.3:
@@ -20,7 +22,7 @@ FrontEnd:
     [~] Headerausgabe angepasst; Die Seitenüberschrift wird jetzt automatisch auf das Bild
         zentiert.
     [+] Joomla-konformen Komponentenheader eingebaut
-Backend:        
+Backend:
     [~] Typ der Logo-Option im View von ImageList auf Media geändert. Dadurch können neue
         Logogs einfach in das Images Verzeichnis von Joomla hochgeladen und verwendet werden.
         Das scheint etwas nützlicher zu sein, als die feste Liste von Bildern.
@@ -47,7 +49,7 @@ Backend:
 
 Änderungen in Version 1.0.8:
 Backend:
-[+] Auf den verschiedenen Management-Seiten gibt es jetzt Buttons um zwischen den Managern 
+[+] Auf den verschiedenen Management-Seiten gibt es jetzt Buttons um zwischen den Managern
     schneller umschalten zu können, weil der Weg über das Menü sehr mühselig ist.
 2013-02-06
 
@@ -59,7 +61,7 @@ Backend:
 
 Änderungen in Version 1.0.6:
 Backend:
-[!] Beim Klick auf das Erledigt-Status-Icon in der Todos-Listenansicht wurde der Freigegeben-Status geändert. 
+[!] Beim Klick auf das Erledigt-Status-Icon in der Todos-Listenansicht wurde der Freigegeben-Status geändert.
     Das ist jetzt behoben und der Erledigt-Status wird korrekt umgeschaltet.
 2013-01-07
 
@@ -73,7 +75,7 @@ Frontend:
 [+] Neu/Aktualisiert-Anzeige funktioniert jetzt
 [+] Beim Wechslen des ToDo-Status werden jetzt weitere Daten, wie Updatezeitpunkt etc. korrekt gesetzt.
 2012-11-23
-    
+
 Änderungen in Version 1.0.3:
 Frontend:
 [+] Der Besuch einer Projektseite durch einen angemeldeten Benutzer wird protokolliert. Das ist für die Neu/Aktualisiert-Anzeige
@@ -86,7 +88,7 @@ Backend:
     -> ToDo/Done Icon kann ausgewählt werden
     -> Seitenüberschrift kann gesetzt werden
     -> Seitenüberschrift und Logo können getrennt ein- und ausgeschaltet werden
-[+] Es können eigene Grafiken für Logo / Done- und ToDo-Icon verwendet werden.   
+[+] Es können eigene Grafiken für Logo / Done- und ToDo-Icon verwendet werden.
     Dazu müssen sie nur in \media\com_jtodo\images\logos bzw. \media\com_jtodo\images\stateindicators
     abgelegt werden.
 [!] Die beiden Daten "inserted" und "updated" werden jetzt korrekt in die Datenbank geschrieben.

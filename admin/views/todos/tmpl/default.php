@@ -14,7 +14,14 @@ JHTML::_('behavior.multiselect');
 JHtml::_('bootstrap.tooltip');
 JHtml::_('formbehavior.chosen', 'select');
 
-require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
+$saveOrder	= $this->listOrder == 'todos.ordering';
+if ($saveOrder)
+{
+	$saveOrderingUrl = 'index.php?option=com_jtodo&task=todos.saveOrderAjax&tmpl=component';
+	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($this->listDirn), $saveOrderingUrl);
+}
+$sortFields = $this->getSortFields();
+
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_jtodo&view=todos'); ?>" method="post" name="adminForm" id="adminForm">
 <?php if (!empty( $this->sidebar)) : ?>
@@ -41,9 +48,8 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
         <thead>
             <tr>
 				<th width="1%" class="nowrap center hidden-phone">
-					<?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'todos.targetdate', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
+					<?php echo JHtml::_('searchtools.sort', '', 'todos.ordering', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 				</th>
-				<th  width="1%" class="nowrap center hidden-phone">#</th>
 				<th width="1%" class="hidden-phone">
 					<?php echo JHtml::_('grid.checkall'); ?>
 				</th>
@@ -77,19 +83,28 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                 $link           = JRoute::_( 'index.php?option=com_jtodo&task=todo.edit&cid[]='.(int)$item->id );
                 $singleItemLink = JRoute::_( 'index.php?option=com_jtodo&task=todo.edit&id='.(int)$item->id );
                 ?>
-				<tr class="row<?php echo $i % 2; ?>" sortable-group-id="<?php echo $item->catid?>">
-					<td class="order nowrap center hidden-phone">
-						<?php
-							$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText('JORDERINGDISABLED');
-						?>
-						<span class="sortable-handler<?php echo $iconClass ?>">
-							<i class="icon-menu"></i>
-						</span>
-							<input type="text" style="display:none" name="order[]" size="5"
-								value="<?php echo $item->ordering; ?>" class="width-20 text-area-order " />
-					</td>
-                        <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
-                        <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
+					<tr class="row<?php echo $i % 2; ?>" sortable-group-id="1">
+						<td class="order nowrap center hidden-phone">
+							<?php
+							$iconClass = '';
+							if (!$saveOrder)
+							{
+								$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText('JORDERINGDISABLED');
+							}
+							?>
+							<span class="sortable-handler <?php echo $iconClass ?>">
+								<i class="icon-menu"></i>
+							</span>
+							<?php if ($saveOrder) : ?>
+								<input type="text" style="display:none" name="order[]" size="5"
+									value="<?php echo $item->ordering; ?>" class="width-20 text-area-order " />
+							<?php endif; ?>
+						</td>
+						<td class="center hidden-phone">
+							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+						</td>
+                //                        <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
+                //        <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
                         <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->name; ?></a></td>
                         <td class="center hidden-phone"><?php echo JHTML::_('date', $item->targetdate,   JText::_('DATE_FORMAT1'), 'UTC');?></td>
                         <td class="center hidden-phone"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'todos.' ); ?></td>

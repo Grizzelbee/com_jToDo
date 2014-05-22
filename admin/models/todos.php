@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jTODO for Joomla                                      //
 // @package     : com_jtodo                                             //
@@ -10,7 +10,7 @@
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted Access' ); 
+defined('_JEXEC') or die( 'Restricted Access' );
 jimport( 'joomla.application.component.modellist' );
 
 class jTODOModelTodos extends JModelList
@@ -25,11 +25,11 @@ class jTODOModelTodos extends JModelList
     public function __construct($config = array())
     {
         if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array('id', 'name', 'project', 'category', 'status', 'published');
+            $config['filter_fields'] = array('id', 'name', 'project', 'category', 'status', 'published', 'todos.ordering');
         }
         parent::__construct($config);
     }
-    
+
 	/**
 	 * Returns the query
 	 * @return string The query to be used to retrieve the rows from the database
@@ -40,7 +40,7 @@ class jTODOModelTodos extends JModelList
         $query = $db->getQuery(true);
 
         // Select some fields
-        $query->select('todos.id, todos.name, todos.published, targetdate, pro.name as project, cat.name as category, status, fk_category');
+        $query->select('todos.id, todos.name, todos.published, targetdate, pro.name as project, cat.name as category, status, fk_category, todos.ordering');
         // From the Todos table
         $query->from('#__jtodo_todos      as todos');
         // join the categories table
@@ -83,20 +83,20 @@ class jTODOModelTodos extends JModelList
         $orderCol  = $this->state->get('list.ordering');
         $orderDirn = $this->state->get('list.direction');
         if (empty($orderCol)){
-            $orderCol  = 'todos.id';
+            $orderCol  = 'todos.ordering';
             $orderDirn = 'ASC';
         }
         $query->order($db->escape($orderCol.' '.$orderDirn));
 
         return $query;
 	}
-   
+
 
     protected function populateState($ordering = null, $direction = null)
     {
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-     
+
         $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state');
         $this->setState('filter.state', $state);
 
@@ -113,9 +113,9 @@ class jTODOModelTodos extends JModelList
         $this->setState('filter.published', $published);
 
         // List state information.
-        parent::populateState('category, targetdate', 'ASC');
+        parent::populateState('todos.ordering', 'ASC');
     }
 
-    
+
 }
 ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jTODO for Joomla                                      //
 // @package     : com_jtodo                                             //
@@ -9,12 +9,12 @@
 // *********************************************************************//
 
 // no direct access to this file
-defined('_JEXEC') or die( 'Restricted Access' ); 
-jimport('joomla.application.component.view'); 
+defined('_JEXEC') or die( 'Restricted Access' );
+jimport('joomla.application.component.view');
 
-class jTODOViewCategories extends JViewLegacy 
-{ 
-    function display($tpl = null) 
+class jTODOViewCategories extends JViewLegacy
+{
+    function display($tpl = null)
     {
         // Get data from the model
         $this->pagination = $this->get( 'Pagination' );
@@ -25,10 +25,10 @@ class jTODOViewCategories extends JViewLegacy
         $this->listOrder = $this->escape($this->state->get( 'list.ordering'  ));
         $this->listDirn  = $this->escape($this->state->get( 'list.direction' ));
         $this->saveorder = $this->listOrder == 'ordering';
-        
+
         // include custom fields
         require_once JPATH_COMPONENT .'/models/fields/categories.php';
-        
+
 		// Preprocess the list of items to find ordering divisions.
 		foreach ($this->items as &$item)
 		{
@@ -37,11 +37,12 @@ class jTODOViewCategories extends JViewLegacy
 		}
 
         // Add Toolbat to View
-        $this-> addToolbar();
+		jToDoHelper::addSubmenu('categories');
+		$this-> addToolbar();
 		$this->sidebar = JHtmlSidebar::render();
 
-        parent::display($tpl); 
-    } 
+        parent::display($tpl);
+    }
 
     function addToolbar()
     {
@@ -54,7 +55,7 @@ class jTODOViewCategories extends JViewLegacy
         JToolBarHelper::divider();
         JToolBarHelper::publishList('categories.publish');
         JToolBarHelper::unpublishList('categories.unpublish');
-		
+
 		JHtmlSidebar::setAction('index.php?option=com_jtodo');
 
 		JHtmlSidebar::addFilter(
@@ -64,7 +65,7 @@ class jTODOViewCategories extends JViewLegacy
 		);
 
     }
-	
+
 		protected function getSortFields()
 	{
 		return array(
@@ -74,5 +75,5 @@ class jTODOViewCategories extends JViewLegacy
 		);
 	}
 
-} 
+}
 ?>

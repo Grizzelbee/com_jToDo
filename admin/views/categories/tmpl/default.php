@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jTODO for Joomla                                      //
 // @package     : com_jtodo                                             //
@@ -9,19 +9,18 @@
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC')or die('Restricted access'); 
+defined('_JEXEC')or die('Restricted access');
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
-require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 $saveOrder	= $this->listOrder == 'ordering';
 if ($saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_jtodo&task=contacts.saveOrderAjax&tmpl=component';
+	$saveOrderingUrl = 'index.php?option=com_jtodo&task=categories.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($this->listDirn), $saveOrderingUrl);
 }
 $sortFields = $this->getSortFields();
-?> 
+?>
 <script type="text/javascript">
 	Joomla.orderTable = function()
 	{
@@ -59,7 +58,7 @@ $sortFields = $this->getSortFields();
 			</div>
     </div>
     <div class="clearfix"> </div>
-    
+
 		<table class="table table-striped" id="articleList">
         <thead>
             <tr>
@@ -73,16 +72,10 @@ $sortFields = $this->getSortFields();
                     <?php echo JText::_( '#' ); ?>
                 </th>
                 <th  class="title">
-                    <?php echo JHTML::_('grid.sort', 'COM_JTODO_CATEGORY', 'category', $this->listDirn, $this->listOrder); ?>
+                    <?php echo JHTML::_('grid.sort', 'COM_JTODO_CATEGORY', 'name', $this->listDirn, $this->listOrder); ?>
                 </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JTODO_PUBLISHED', 'published', $this->listDirn, $this->listOrder); ?>
-               </th>
-                <th width="14%">
-                    <span>
-                        <?php echo JHTML::_('grid.sort', 'COM_JTODO_ORDERING', 'ordering', $this->listDirn, $this->listOrder); ?>
-                        <?php echo JHTML::_('grid.order', $this->items, 'filesave.png', 'categories.saveorder'); ?>
-                    </span>
                 </th>
                 <th width="5">
                     <?php echo JHTML::_('grid.sort', 'COM_JTODO_ID', 'id', $this->listDirn, $this->listOrder); ?>
@@ -90,63 +83,54 @@ $sortFields = $this->getSortFields();
             </tr>
         </thead>
         <tbody>
-            <?php  
+            <?php
 				$n = count($this->items);
-                foreach($this->items as $i => $item) : 
-                $link = JRoute::_( 'index.php?option=com_jtodo&task=category.edit&id='.(int)$item->id );
+                foreach($this->items as $i => $item) :
+                $link = JRoute::_( 'index.php?option=com_jtodo&task=category.edit&cid[]='.(int)$item->id );
                 $ordering	= ($this->listOrder == 'ordering');
                 ?>
-				<tr class="row<?php echo $i % 2; ?>" sortable-group-id="<?php echo $item->catid?>">
-					<td class="order nowrap center hidden-phone">
-						<?php
-						$iconClass = '';
-						if (!$saveOrder)
-						{
-							$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText('JORDERINGDISABLED');
-						}
-						?>
-						<span class="sortable-handler<?php echo $iconClass ?>">
-							<i class="icon-menu"></i>
-						</span>
-						<?php if ($saveOrder) : ?>
-							<input type="text" style="display:none" name="order[]" size="5"
-								value="<?php echo $item->ordering; ?>" class="width-20 text-area-order " />
-						<?php endif; ?>
-					</td>
+					<tr class="row<?php echo $i % 2; ?>" sortable-group-id="1">
+						<td class="order nowrap center hidden-phone">
+							<?php
+							$iconClass = '';
+							if (!$saveOrder)
+							{
+								$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText('JORDERINGDISABLED');
+							}
+							?>
+							<span class="sortable-handler<?php echo $iconClass ?>">
+								<i class="icon-menu"></i>
+							</span>
+							<?php if ($saveOrder) : ?>
+								<input type="text" style="display:none" name="order[]" size="5"
+									value="<?php echo $item->ordering; ?>" class="width-20 text-area-order " />
+							<?php endif; ?>
+						</td>
                         <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
                         <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
                         <td><a href="<?php echo $link; ?>"><?php echo $item->name; ?></a></td>
                         <td class="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'categories.' ); ?></td>
-
-                        <!--td align="center"><?php //echo $item->ordering; ?></td-->
-                        <td class = "order" align="center">
-                            <span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->ordering <= $item->ordering), 'categories.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                            <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->ordering >= $item->ordering), 'categories.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                            <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="text-area-order width-20" />
-
-                        </td>
-
-                        <td><?php echo $item->id; ?></td>
+						<td><?php echo $item->id; ?></td>
                     </tr>
-                    
-                <?php 
-                endforeach; 
+
+                <?php
+                endforeach;
             ?>
         <tbody>
         <tfoot>
             <tr>
                 <td colspan="10">
-                    <?php echo $this->pagination->getListFooter() 
+                    <?php echo $this->pagination->getListFooter()
                                .'<br>'
-                               . $this->pagination->getResultsCounter(); 
+                               . $this->pagination->getResultsCounter();
                     ?>
                     <p>
                     <center>jToDo  v<?php echo _jTODO_VERSION; ?></center>
                     <center>Copyright &copy; 2012-<?php echo date('Y', time() )?> by Hanjo Hingsen, Webmaster of  <a href="http://www.treu-zu-kaarst.de">http://www.treu-zu-kaarst.de</a>, All Rights reserved</center>
                 </td>
             </tr>
-        </tfoot>            
-    </table> 
+        </tfoot>
+    </table>
     <div>
         <input type="hidden" name="task"             value = "" />
         <input type="hidden" name="boxchecked"       value = "0" />

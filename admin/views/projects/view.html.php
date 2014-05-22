@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jTODO for Joomla                                      //
 // @package     : com_jtodo                                             //
@@ -9,12 +9,12 @@
 // *********************************************************************//
 
 // no direct access to this file
-defined('_JEXEC') or die( 'Restricted Access' ); 
-jimport('joomla.application.component.view'); 
+defined('_JEXEC') or die( 'Restricted Access' );
+jimport('joomla.application.component.view');
 
-class jTODOViewProjects extends JViewLegacy 
-{ 
-    function display($tpl = null) 
+class jTODOViewProjects extends JViewLegacy
+{
+    function display($tpl = null)
     {
         // Get data from the model
         $this->pagination = $this->get( 'Pagination' );
@@ -25,7 +25,7 @@ class jTODOViewProjects extends JViewLegacy
         $this->listOrder = $this->escape($this->state->get( 'list.ordering'  ));
         $this->listDirn  = $this->escape($this->state->get( 'list.direction' ));
         $this->saveorder = $this->listOrder == 'ordering';
-        
+
         // include custom fields
         require_once JPATH_COMPONENT .'/models/fields/projects.php';
 
@@ -36,11 +36,12 @@ class jTODOViewProjects extends JViewLegacy
 			$item->order_dn = true;
 		}
         // Add Toolbat to View
-        $this-> addToolbar();
+		jToDoHelper::addSubmenu('projects');
+		$this-> addToolbar();
 		$this->sidebar = JHtmlSidebar::render();
-       
-        parent::display($tpl); 
-    } 
+
+        parent::display($tpl);
+    }
 
     function addToolbar()
     {
@@ -61,10 +62,10 @@ class jTODOViewProjects extends JViewLegacy
 			'filter_published',
 			JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true)
 		);
-		
-		
+
+
     }
-	
+
 		protected function getSortFields()
 	{
 		return array(
@@ -72,5 +73,5 @@ class jTODOViewProjects extends JViewLegacy
 		);
 	}
 
-} 
+}
 ?>

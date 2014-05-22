@@ -32,6 +32,7 @@ class jTODOViewTodos extends JViewLegacy
         require_once JPATH_COMPONENT .'/models/fields/status.php';
 
         // Add Toolbat to View
+		jToDoHelper::addSubmenu('todos');
         $this->addToolbar();
         $this->sidebar = JHtmlSidebar::render();
 
@@ -73,7 +74,7 @@ class jTODOViewTodos extends JViewLegacy
 			'filter_category',
 			JHtml::_('select.options', JFormFieldCategories::getOptions(), 'value', 'text', $this->state->get('filter.category'), true)
 		);
-		
+
 		JHtmlSidebar::addFilter(
 			JText::_('COM_JTODO_CHOOSE_STATUS'),
 			'filter_status',

@@ -5,7 +5,7 @@
 // @file        : admin/controller.php (General-Controller-File)        //
 // @implements  : Class jTODO-Controller                                //
 // @description : General (Main-)Controller for the jTODO-Component     //
-// Version      : 1.1.3                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -18,10 +18,13 @@ class jTODOController extends JControllerLegacy
 {
 	function display($cachable = false, $urlpaprams = false)
 	{
+        // include the Helper-Class
+        require_once JPATH_COMPONENT.'/helpers/jtodo.php';
 		// set default view if not set
 		JRequest::setVar('view', JRequest::getCmd('view', 'todos'));
  
 		// call parent behavior
-		parent::display($cachable);	}
+		parent::display($cachable);	
+    }
 
 }

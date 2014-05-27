@@ -44,6 +44,8 @@ class jTODOViewTodos extends JViewLegacy
         // Set Headline
         JHtml::stylesheet('com_jtodo/views.css', array(), true, false, false);
         JToolBarHelper::title(   JText::_( 'COM_JTODO_HEAD_TODOS_MANAGER' ), 'todo' );
+		// Get the toolbar object instance
+		$bar = JToolBar::getInstance('toolbar');
         // Toolbar-Buttons
         JToolBarHelper::addNew('todo.add');
         JToolBarHelper::editList('todo.edit');
@@ -54,6 +56,17 @@ class jTODOViewTodos extends JViewLegacy
         JToolBarHelper::divider();
         JToolBarHelper::custom('todos.setStatus_publish'  , 'publish',   'publish'  , 'COM_JTODO_SETDONE');
         JToolBarHelper::custom('todos.setStatus_unpublish', 'unpublish', 'unpublish', 'COM_JTODO_SETUNDONE');
+
+        // Add a batch button
+      	JHtml::_('bootstrap.modal', 'collapseModal');
+       	$title = JText::_('JTOOLBAR_BATCH');
+
+       	// Instantiate a new JLayoutFile instance and render the batch button
+       	$layout = new JLayoutFile('joomla.toolbar.batch');
+
+       	$dhtml = $layout->render(array('title' => $title));
+       	$bar->appendButton('Custom', $dhtml, 'batch');
+
 
         JHtmlSidebar::setAction('index.php?option=com_jtodo');
 
@@ -99,6 +112,19 @@ class jTODOViewTodos extends JViewLegacy
 
         return $ausgabe;
     }
+
+    protected function getSortFields()
+    {
+    	return array(
+    			'ordering' => JText::_('JGRID_HEADING_ORDERING'),
+    			'category' => JText::_('COM_JTODO_CATEGORY'),
+    			'project' => JText::_('COM_JTODO_PROJECT'),
+    			'published' => JText::_('COM_JTODO_PUBLISHED'),
+    			'status' => JText::_('COM_JTODO_STATUS'),
+    			'targetdate' => JText::_('COM_JTODO_TARGETDATE')
+    	);
+    }
+
 
 }
 ?>

@@ -103,8 +103,6 @@ $sortFields = $this->getSortFields();
 						<td class="center hidden-phone">
 							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 						</td>
-                //                        <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
-                //        <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
                         <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->name; ?></a></td>
                         <td class="center hidden-phone"><?php echo JHTML::_('date', $item->targetdate,   JText::_('DATE_FORMAT1'), 'UTC');?></td>
                         <td class="center hidden-phone"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'todos.' ); ?></td>
@@ -131,6 +129,8 @@ $sortFields = $this->getSortFields();
             </tr>
         </tfoot>
     </table>
+	<?php //Load the batch processing form. ?>
+	<?php echo $this->loadTemplate('batch'); ?>
     <div>
         <input type="hidden" name="task"             value = "" />
         <input type="hidden" name="boxchecked"       value = "0" />

@@ -66,7 +66,7 @@ class jTODOViewProjects extends JViewLegacy
 
     }
 
-		protected function getSortFields()
+	protected function getSortFields()
 	{
 		return array(
 			'ordering' => JText::_('JGRID_HEADING_ORDERING')

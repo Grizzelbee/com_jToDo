@@ -25,7 +25,7 @@ class jTODOModelTodos extends JModelList
     public function __construct($config = array())
     {
         if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array('id', 'name', 'project', 'category', 'status', 'published', 'todos.ordering');
+            $config['filter_fields'] = array('id', 'name', 'project', 'category', 'targetdate', 'status', 'published', 'todos.ordering');
         }
         parent::__construct($config);
     }

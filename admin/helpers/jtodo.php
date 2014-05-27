@@ -5,7 +5,7 @@
 // @file        : admin/helpers/jtodo.php (General-Helper-Class)        //
 // @implements  : Class jToDoHelper                                     //
 // @description : General HelperClass for the jTODO-Component           //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!

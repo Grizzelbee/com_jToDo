@@ -5,7 +5,7 @@
 // @file        : admin/views/todos/view.html.php                       //
 // @implements  : Class jToDoViewTodos                                  //
 // @description : Main-entry for the Todos-ListView                     //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 
 // no direct access to this file
@@ -59,22 +59,16 @@ class jTODOViewTodos extends JViewLegacy
 
         // Add a batch button
       	JHtml::_('bootstrap.modal', 'collapseModal');
-       	$title = JText::_('JTOOLBAR_BATCH');
+       	$title = JText::_('COM_JTODO_REDATE');
 
        	// Instantiate a new JLayoutFile instance and render the batch button
        	$layout = new JLayoutFile('joomla.toolbar.batch');
 
        	$dhtml = $layout->render(array('title' => $title));
-       	$bar->appendButton('Custom', $dhtml, 'batch');
+       	$bar->appendButton('Custom', $dhtml, 'redate');
 
 
         JHtmlSidebar::setAction('index.php?option=com_jtodo');
-
-        JHtmlSidebar::addFilter(
-        JText::_('JOPTION_SELECT_PUBLISHED'),
-        'filter_published',
-        JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true)
-        );
 
 		JHtmlSidebar::addFilter(
 			JText::_('COM_JTODO_CHOOSE_PROJECT'),
@@ -87,6 +81,12 @@ class jTODOViewTodos extends JViewLegacy
 			'filter_category',
 			JHtml::_('select.options', JFormFieldCategories::getOptions(), 'value', 'text', $this->state->get('filter.category'), true)
 		);
+
+        JHtmlSidebar::addFilter(
+        JText::_('JOPTION_SELECT_PUBLISHED'),
+        'filter_published',
+        JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true)
+        );
 
 		JHtmlSidebar::addFilter(
 			JText::_('COM_JTODO_CHOOSE_STATUS'),

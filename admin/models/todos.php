@@ -6,7 +6,7 @@
 // @implements  : Class jTODOModelTodos                                 //
 // @description : Model for the DB-Manipulation of the                  //
 //                jToDo-ToDos-List                                      //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -115,7 +115,6 @@ class jTODOModelTodos extends JModelList
         // List state information.
         parent::populateState('todos.ordering', 'ASC');
     }
-
 
 }
 ?>

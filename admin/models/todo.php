@@ -6,7 +6,7 @@
 // @implements  : Class jTODOModelTodo                                  //
 // @description : Model for the DB-Manipulation of a single             //
 //                jTODO-ToDo; not for the list                          //
-// Version      : 1.0.6                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -51,96 +51,7 @@ class jTODOModelTodo extends JModelAdmin
         return $form;
 	}	
      
-	/**
-	 * Method to perform batch operations on an item or a set of items.
-	 *
-	 * @param   array  $commands  An array of commands to perform.
-	 * @param   array  $pks       An array of item ids.
-	 * @param   array  $contexts  An array of item contexts.
-	 *
-	 * @return  boolean   Returns true on success, false on failure.
-	 *
-	 * @since	2.5
-	 */
-	public function batch($commands, $pks, $contexts)
-	{
-		// Sanitize user ids.
-		$pks = array_unique($pks);
-		JArrayHelper::toInteger($pks);
-
-		// Remove any values of zero.
-		if (array_search(0, $pks, true))
-		{
-			unset($pks[array_search(0, $pks, true)]);
-		}
-
-		if (empty($pks))
-		{
-			$this->setError(JText::_('JGLOBAL_NO_ITEM_SELECTED'));
-
-			return false;
-		}
-
-		$done = false;
-
-		if (!empty($commands['category_id']))
-		{
-			$cmd = JArrayHelper::getValue($commands, 'move_copy', 'c');
-
-			if ($cmd == 'c')
-			{
-				$result = $this->batchCopy($commands['category_id'], $pks, $contexts);
-
-				if (is_array($result))
-				{
-					$pks = $result;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			elseif ($cmd == 'm' && !$this->batchMove($commands['category_id'], $pks, $contexts))
-			{
-				return false;
-			}
-
-			$done = true;
-		}
-
-		if (strlen($commands['client_id']) > 0)
-		{
-			if (!$this->batchClient($commands['client_id'], $pks, $contexts))
-			{
-				return false;
-			}
-
-			$done = true;
-		}
-
-		if (!empty($commands['language_id']))
-		{
-			if (!$this->batchLanguage($commands['language_id'], $pks, $contexts))
-			{
-				return false;
-			}
-
-			$done = true;
-		}
-
-		if (!$done)
-		{
-			$this->setError(JText::_('JLIB_APPLICATION_ERROR_INSUFFICIENT_BATCH_INFORMATION'));
-
-			return false;
-		}
-
-		// Clear the cache
-		$this->cleanCache();
-
-		return true;
-	}
-	 
+ 
     /**
      * Method to get the data that should be injected in the form.
      *
@@ -196,5 +107,27 @@ class jTODOModelTodo extends JModelAdmin
             return false;
         }
     }
+	
+    public function ReDateToDos($cid, $newDate)
+    {
+        $db    = JFactory::getDBO();
+        $query = $db->getQuery(true);
+		
+        $query->update('#__jtodo_todos');  
+        $query->set('targetdate = \''.JFactory::getDate($newDate, 'UTC')->toSQL().'\'');
+        $query->set('updated = CURRENT_DATE');  
+        $query->WHERE('id in ('.implode(',', $cid).');');
+        
+        $db->setQuery($query);
+        $data = $db->Query();
+
+        if ( $db->getAffectedRows() >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+	
+	
 }
 ?>

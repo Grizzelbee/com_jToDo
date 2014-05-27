@@ -5,7 +5,7 @@
 // @file        : admin/views/todos/tmpl/default.php                    //
 // @implements  :                                                       //
 // @description : Template for the ToDos-List-View                      //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!

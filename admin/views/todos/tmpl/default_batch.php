@@ -1,12 +1,12 @@
 <?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_banners
- *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
+// *********************************************************************//
+// Project      : jTODO for Joomla                                      //
+// @package     : com_jtodo                                             //
+// @file        : admin/views/todos/tmpl/default_batch.php              //
+// @implements  :                                                       //
+// @description : Template for the ToDos-List-View-ReDate-Popup         //
+// Version      : 2.0.0                                                 //
+// *********************************************************************//
 defined('_JEXEC') or die;
 
 $published = $this->state->get('filter.published');
@@ -33,7 +33,7 @@ $published = $this->state->get('filter.published');
 		<button class="btn" type="button" onclick="document.id('batch-category-id').value='';document.id('batch-client-id').value='';document.id('batch-language-id').value=''" data-dismiss="modal">
 			<?php echo JText::_('JCANCEL'); ?>
 		</button>
-		<button class="btn btn-primary" type="submit" onclick="Joomla.submitbutton('todo.batch');">
+		<button class="btn btn-primary" type="submit" onclick="if (document.adminForm.boxchecked.value==0){alert('<?php echo JTEXT::_('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST');?>');}else{ Joomla.submitbutton('todos.redate')}">
 			<?php echo JText::_('JGLOBAL_BATCH_PROCESS'); ?>
 		</button>
 	</div>

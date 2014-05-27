@@ -1,7 +1,7 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
-Änderungen in Version 1.1.4:
+Änderungen in Version 2.0.0:
   [-] Komponente ist nicht mehr mit Joomla 2.5 kompatibel
   [+] Joomla 3 Kompatibilität weiter ausgebaut;
       Admin-Bereich ist jetzt auch in Joomla 3 hübsch
@@ -10,11 +10,13 @@ jToDo - Eine ToDo Liste für Joomla
   [!] Der Veröffentlicht-Filter funktioniert jetzt in allen drei Listenansichten
   [~] Untermenü der Komponente auf J!3 Standart umgebaut
   [+] Neuanordnung der Einträge per Drag & Drop Reorder
+  [+] Es kann jetzt vielen ToDos gleichzeitig ein neues Zieldatum zugeordnet werden
 2014-05-19
 
 Änderungen in Version 1.1.3:
   [+] Joomla 3 Kompatibilität hergestellt
   [+] SQLs in den Admin-Listenansichten korrigiert
+  [+] Letzte mit Joomla 2.x kompatible Version
 2013-08-26
 
 Änderungen in Version 1.1.2:

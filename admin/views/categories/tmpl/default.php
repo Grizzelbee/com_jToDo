@@ -5,7 +5,7 @@
 // @file        : admin/views/categories/tmpl/default.php               //
 // @implements  :                                                       //
 // @description : Template for the Categories-List-View                 //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.1                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -56,7 +56,10 @@ $sortFields = $this->getSortFields();
 				<button type="submit" class="btn hasTooltip" title="<?php echo JHtml::tooltipText('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
 				<button type="button" class="btn hasTooltip" title="<?php echo JHtml::tooltipText('JSEARCH_FILTER_CLEAR'); ?>" onclick="document.id('filter_search').value='';this.form.submit();"><i class="icon-remove"></i></button>
 			</div>
-    </div>
+      <div name="pagination_limiter" id="pagination_limiter" class="btn-group pull-right">
+         <?php echo $this->pagination->getLimitBox(); ?>
+      </div>
+	</div>
     <div class="clearfix"> </div>
 
 		<table class="table table-striped" id="articleList">
@@ -68,9 +71,6 @@ $sortFields = $this->getSortFields();
 				<th width="1%" class="hidden-phone">
 					<?php echo JHtml::_('grid.checkall'); ?>
 				</th>
-                <th width="5">
-                    <?php echo JText::_( '#' ); ?>
-                </th>
                 <th  class="title">
                     <?php echo JHTML::_('grid.sort', 'COM_JTODO_CATEGORY', 'name', $this->listDirn, $this->listOrder); ?>
                 </th>
@@ -107,7 +107,6 @@ $sortFields = $this->getSortFields();
 							<?php endif; ?>
 						</td>
                         <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
-                        <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
                         <td><a href="<?php echo $link; ?>"><?php echo $item->name; ?></a></td>
                         <td class="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'categories.' ); ?></td>
 						<td><?php echo $item->id; ?></td>

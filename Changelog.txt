@@ -1,6 +1,11 @@
 jToDo - Eine ToDo Liste für Joomla
 **********************************
 
+Änderungen in Version 2.0.1
+  [!] Ein paar kleine Bugfixes
+  [+] Optik an ein paar Stellen etwas geglättet
+2014-05-28  
+
 Änderungen in Version 2.0.0:
   [-] Komponente ist nicht mehr mit Joomla 2.5 kompatibel
   [+] Joomla 3 Kompatibilität weiter ausgebaut;

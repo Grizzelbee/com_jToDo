@@ -2,8 +2,8 @@
 <extension type="component" version="3.1.0" client = "site" method="upgrade">
 
     <name>com_jtodo</name>
-    <version>2.0.0</version>
-    <creationDate>2014-05-27</creationDate>
+    <version>2.0.1</version>
+    <creationDate>2014-05-28</creationDate>
     <author>Hanjo Hingsen</author>
 	<authorEmail>webmaster@treu-zu-kaarst.de</authorEmail>
 	<authorUrl>http://www.treu-zu-kaarst.de</authorUrl>

@@ -5,12 +5,12 @@
 // @file        : admin/jtodo.php (Joomla-Entry-File)                   //
 // @implements  :                                                       //
 // @description : Main-Backend-Entry-File for the jToDo-Component       //
-// Version      : 2.0.0                                                 //
+// Version      : 2.0.1                                                 //
 // *********************************************************************//
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-define('_jTODO_VERSION','2.0.0');
+define('_jTODO_VERSION','2.0.1');
 
 // for Joomla 3 Compatibility
 if(!defined('DS')){

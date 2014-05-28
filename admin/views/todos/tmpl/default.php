@@ -41,14 +41,17 @@ $sortFields = $this->getSortFields();
 			<button type="submit" class="btn hasTooltip" title="<?php echo JHtml::tooltipText('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
 			<button type="button" class="btn hasTooltip" title="<?php echo JHtml::tooltipText('JSEARCH_FILTER_CLEAR'); ?>" onclick="document.id('filter_search').value='';this.form.submit();"><i class="icon-remove"></i></button>
 		</div>
-    </div>
+      <div name="pagination_limiter" id="pagination_limiter" class="btn-group pull-right">
+         <?php echo $this->pagination->getLimitBox(); ?>
+      </div>
+	</div>
     <div class="clearfix"> </div>
 
     <table class="table table-striped" id="articleList">
         <thead>
             <tr>
 				<th width="1%" class="nowrap center hidden-phone">
-					<?php echo JHtml::_('searchtools.sort', '', 'todos.ordering', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
+					<?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'ordering', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
 				</th>
 				<th width="1%" class="hidden-phone">
 					<?php echo JHtml::_('grid.checkall'); ?>

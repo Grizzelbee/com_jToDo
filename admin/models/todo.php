@@ -6,7 +6,7 @@
 // @implements  : Class jTODOModelTodo                                  //
 // @description : Model for the DB-Manipulation of a single             //
 //                jTODO-ToDo; not for the list                          //
-// Version      : 2.0.0                                                 //
+// Version      : 2.0.2                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -16,29 +16,29 @@ jimport( 'joomla.application.component.modeladmin' );
 class jTODOModelTodo extends JModelAdmin
 {
     /**
-	 * Returns a reference to the a Table object, always creating it.
-	 *
-	 * @param	type	The table type to instantiate
-	 * @param	string	A prefix for the table class name. Optional.
-	 * @param	array	Configuration array for model. Optional.
-	 * @return	JTable	A database object
-	 * @since	1.6
-	 */
+    * Returns a reference to the a Table object, always creating it.
+    *
+    * @param	type	The table type to instantiate
+    * @param	string	A prefix for the table class name. Optional.
+    * @param	array	Configuration array for model. Optional.
+    * @return	JTable	A database object
+    * @since	1.6
+    */
     public function getTable($type = 'todo', $prefix = 'jTODOTable', $config = array())
-	{
-		return JTable::getInstance($type, $prefix, $config);
-	}
+   {
+      return JTable::getInstance($type, $prefix, $config);
+   }
 
-	/**
-	 * Method to get the record form.
-	 *
-	 * @param	array	$data		Data for the form.
-	 * @param	boolean	$loadData	True if the form is to load its own data (default case), false if not.
-	 * @return	mixed	A JForm object on success, false on failure
-	 * @since	1.6
-	 */
-	public function getForm($data = array(), $loadData = true)
-	{
+   /**
+    * Method to get the record form.
+    *
+    * @param	array	$data		Data for the form.
+    * @param	boolean	$loadData	True if the form is to load its own data (default case), false if not.
+    * @return	mixed	A JForm object on success, false on failure
+    * @since	1.6
+    */
+   public function getForm($data = array(), $loadData = true)
+   {
         $form = $this->loadForm(
                 'com_jtodo.todo',
                 'todo',
@@ -49,7 +49,7 @@ class jTODOModelTodo extends JModelAdmin
         }
 
         return $form;
-	}
+   }
 
 
     /**
@@ -75,16 +75,16 @@ class jTODOModelTodo extends JModelAdmin
     }
 
 
-	function getCategories()
-	{
-		// Lets load the data if it doesn't already exist
-		if (empty( $this->_categories ))
-		{
-			$query = 'SELECT id, name, FROM #__jtodo_categories where published = 1';
-			$this->_categories = $this->_getList( $query );
-		}
-		return $this->_categories;
-	}
+   function getCategories()
+   {
+      // Lets load the data if it doesn't already exist
+      if (empty( $this->_categories ))
+      {
+         $query = 'SELECT id, name, FROM #__jtodo_categories where published = 1';
+         $this->_categories = $this->_getList( $query );
+      }
+      return $this->_categories;
+   }
 
     public function setItemDoneStatus($cid, $newStatus)
     {
@@ -108,7 +108,7 @@ class jTODOModelTodo extends JModelAdmin
         }
     }
 
-    public function ReDateToDos($cid, $newDate)
+    public function ReDateToDos($cid, $newDate, $newPublishedState, $newDoneState)
     {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
@@ -117,6 +117,16 @@ class jTODOModelTodo extends JModelAdmin
         $query->set('targetdate = \''.JFactory::getDate($newDate, 'UTC')->toSQL().'\'');
         $query->set('updated = CURRENT_DATE');
         $query->WHERE('id in ('.implode(',', $cid).');');
+
+        if ($newDoneState != -99)
+        {
+           $this->setItemDoneStatus($cid, $newDoneState);
+        }
+
+        if ($newPublishedState != -99)
+        {
+           $this->publish($cid, $newPublishedState);
+        }
 
         $db->setQuery($query);
         $data = $db->Query();
@@ -127,7 +137,6 @@ class jTODOModelTodo extends JModelAdmin
             return false;
         }
     }
-
 
 
 }

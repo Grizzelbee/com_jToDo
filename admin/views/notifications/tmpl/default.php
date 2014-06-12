@@ -2,10 +2,10 @@
 // *********************************************************************//
 // Project      : jTODO for Joomla                                      //
 // @package     : com_jtodo                                             //
-// @file        : admin/views/categories/tmpl/default.php               //
+// @file        : admin/views/notifications/tmpl/default.php            //
 // @implements  :                                                       //
-// @description : Template for the Categories-List-View                 //
-// Version      : 2.0.1                                                 //
+// @description : Template for the Notifications-List-View              //
+// Version      : 2.1.0                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -16,7 +16,7 @@ JHtml::_('formbehavior.chosen', 'select');
 $saveOrder	= $this->listOrder == 'ordering';
 if ($saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_jtodo&task=categories.saveOrderAjax&tmpl=component';
+	$saveOrderingUrl = 'index.php?option=com_jtodo&task=notifications.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($this->listDirn), $saveOrderingUrl);
 }
 $sortFields = $this->getSortFields();
@@ -38,7 +38,7 @@ $sortFields = $this->getSortFields();
 		Joomla.tableOrdering(order, dirn, '');
 	}
 </script>
-<form action="<?php echo JRoute::_('index.php?option=com_jtodo&view=categories'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_jtodo&view=notifications'); ?>" method="post" name="adminForm" id="adminForm">
 <?php if (!empty( $this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -72,7 +72,16 @@ $sortFields = $this->getSortFields();
 					<?php echo JHtml::_('grid.checkall'); ?>
 				</th>
                 <th  class="title">
-                    <?php echo JHTML::_('grid.sort', 'COM_JTODO_CATEGORY', 'name', $this->listDirn, $this->listOrder); ?>
+                    <?php echo JHTML::_('grid.sort', 'COM_JTODO_CATEGORY', 'category', $this->listDirn, $this->listOrder); ?>
+                </th>
+                <th  class="title">
+                    <?php echo JHTML::_('grid.sort', 'COM_TODO_JUSER', 'username', $this->listDirn, $this->listOrder); ?>
+                </th>
+                <th  class="title">
+                    <?php echo JHTML::_('grid.sort', 'COM_JTODO_REALNAME', 'name', $this->listDirn, $this->listOrder); ?>
+                </th>
+                <th  class="title">
+                    <?php echo JHTML::_('grid.sort', 'COM_JTODO_EMAIL', 'email', $this->listDirn, $this->listOrder); ?>
                 </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JTODO_PUBLISHED', 'published', $this->listDirn, $this->listOrder); ?>
@@ -84,10 +93,8 @@ $sortFields = $this->getSortFields();
         </thead>
         <tbody>
             <?php
-				$n = count($this->items);
                 foreach($this->items as $i => $item) :
-                $link = JRoute::_( 'index.php?option=com_jtodo&task=category.edit&id='.(int)$item->id );
-                $ordering	= ($this->listOrder == 'ordering');
+                $link = JRoute::_( 'index.php?option=com_jtodo&task=notification.edit&id='.(int)$item->id );
                 ?>
 					<tr class="row<?php echo $i % 2; ?>" sortable-group-id="1">
 						<td class="order nowrap center hidden-phone">
@@ -107,8 +114,11 @@ $sortFields = $this->getSortFields();
 							<?php endif; ?>
 						</td>
                         <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
+                        <td><a href="<?php echo $link; ?>"><?php echo $item->category; ?></a></td>
+                        <td><a href="<?php echo $link; ?>"><?php echo $item->username; ?></a></td>
                         <td><a href="<?php echo $link; ?>"><?php echo $item->name; ?></a></td>
-                        <td class="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'categories.' ); ?></td>
+						<td><a href="<?php echo $link; ?>"><?php echo $item->email; ?></a></td>
+                        <td class="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'notifications.' ); ?></td>
 						<td><?php echo $item->id; ?></td>
                     </tr>
 

@@ -5,7 +5,7 @@
 // @file        : admin/views/todos/tmpl/default.php                    //
 // @implements  :                                                       //
 // @description : Template for the ToDos-List-View                      //
-// Version      : 2.0.0                                                 //
+// Version      : 2.0.2                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -29,19 +29,24 @@ $sortFields = $this->getSortFields();
 		<?php echo $this->sidebar; ?>
 	</div>
 	<div id="j-main-container" class="span10">
-<?php else : ?>
+		<?php if (empty($this->items)) : ?>
+			<div class="alert alert-no-items">
+				<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+			</div>
+		<?php endif;?>
+	<?php else : ?>
 	<div id="j-main-container">
 <?php endif;?>
     <div id="filter-bar" class="btn-toolbar">
-		<div class="filter-search btn-group pull-left">
-			<label for="filter_search" class="element-invisible"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="filter_search" placeholder="<?php JText::_('JSEARCH_FILTER'); ?>" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" class="hasTooltip" title="<?php echo JHtml::tooltipText('COM_JTODO_ITEMS_SEARCH_FILTER'); ?>" />
-		</div>
-		<div class="btn-group pull-left">
-			<button type="submit" class="btn hasTooltip" title="<?php echo JHtml::tooltipText('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
-			<button type="button" class="btn hasTooltip" title="<?php echo JHtml::tooltipText('JSEARCH_FILTER_CLEAR'); ?>" onclick="document.id('filter_search').value='';this.form.submit();"><i class="icon-remove"></i></button>
-		</div>
-      <div name="pagination_limiter" id="pagination_limiter" class="btn-group pull-right">
+			<div class="filter-search btn-group pull-left">
+				<label for="filter_search" class="element-invisible"><?php echo JText::_('COM_JTODO_ITEMS_SEARCH_FILTER_DESC');?></label>
+				<input type="text" name="filter_search" id="filter_search" placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" class="hasTooltip" title="<?php echo JHtml::tooltipText('COM_JTODO_ITEMS_SEARCH_FILTER'); ?>" />
+			</div>
+			<div class="btn-group pull-left">
+				<button type="submit" class="btn hasTooltip" title="<?php echo JHtml::tooltipText('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
+				<button type="button" class="btn hasTooltip" title="<?php echo JHtml::tooltipText('JSEARCH_FILTER_CLEAR'); ?>" onclick="document.id('filter_search').value='';this.form.submit();"><i class="icon-remove"></i></button>
+			</div>
+          <div name="pagination_limiter" id="pagination_limiter" class="btn-group pull-right">
          <?php echo $this->pagination->getLimitBox(); ?>
       </div>
 	</div>

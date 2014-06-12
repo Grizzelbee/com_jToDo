@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jTODO for Joomla                                      //
 // @package     : com_jtodo                                             //
@@ -10,7 +10,7 @@
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted Access' ); 
+defined('_JEXEC') or die( 'Restricted Access' );
 jimport( 'joomla.application.component.modeladmin' );
 
 class jTODOModelTodo extends JModelAdmin
@@ -28,7 +28,7 @@ class jTODOModelTodo extends JModelAdmin
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
-    
+
 	/**
 	 * Method to get the record form.
 	 *
@@ -40,18 +40,18 @@ class jTODOModelTodo extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
         $form = $this->loadForm(
-                'com_jtodo.todo', 
-                'todo', 
+                'com_jtodo.todo',
+                'todo',
                  array('control' => 'jform', 'load_data' => $loadData));
         if (empty($form))
         {
             return false;
         }
-     
+
         return $form;
-	}	
-     
- 
+	}
+
+
     /**
      * Method to get the data that should be injected in the form.
      *
@@ -71,10 +71,10 @@ class jTODOModelTodo extends JModelAdmin
             }
             $data->updated  = date('Y-m-d', time());
         }
-        return $data;	
+        return $data;
     }
-    
-    
+
+
 	function getCategories()
 	{
 		// Lets load the data if it doesn't already exist
@@ -85,39 +85,19 @@ class jTODOModelTodo extends JModelAdmin
 		}
 		return $this->_categories;
 	}
-    
+
     public function setItemDoneStatus($cid, $newStatus)
     {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
 
-        $query->update('#__jtodo_todos');  
-        $query->set('status = '.(int)$newStatus);  
-        $query->set('updated = NULL');  
-        $query->set('done_at = NULL');  
-        $query->set('done_by_juserid = NULL');  
+        $query->update('#__jtodo_todos');
+        $query->set('status = '.(int)$newStatus);
+        $query->set('updated = NULL');
+        $query->set('done_at = NULL');
+        $query->set('done_by_juserid = NULL');
         $query->WHERE('id in ('.implode(',', $cid).');');
-        
-        $db->setQuery($query);
-        $data = $db->Query();
-        
-        if ( $db->getAffectedRows() >= 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-	
-    public function ReDateToDos($cid, $newDate)
-    {
-        $db    = JFactory::getDBO();
-        $query = $db->getQuery(true);
-		
-        $query->update('#__jtodo_todos');  
-        $query->set('targetdate = \''.JFactory::getDate($newDate, 'UTC')->toSQL().'\'');
-        $query->set('updated = CURRENT_DATE');  
-        $query->WHERE('id in ('.implode(',', $cid).');');
-        
+
         $db->setQuery($query);
         $data = $db->Query();
 
@@ -127,7 +107,28 @@ class jTODOModelTodo extends JModelAdmin
             return false;
         }
     }
-	
-	
+
+    public function ReDateToDos($cid, $newDate)
+    {
+        $db    = JFactory::getDBO();
+        $query = $db->getQuery(true);
+
+        $query->update('#__jtodo_todos');
+        $query->set('targetdate = \''.JFactory::getDate($newDate, 'UTC')->toSQL().'\'');
+        $query->set('updated = CURRENT_DATE');
+        $query->WHERE('id in ('.implode(',', $cid).');');
+
+        $db->setQuery($query);
+        $data = $db->Query();
+
+        if ( $db->getAffectedRows() >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
 }
 ?>

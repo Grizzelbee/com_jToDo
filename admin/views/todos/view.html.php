@@ -65,7 +65,7 @@ class jTODOViewTodos extends JViewLegacy
        	$layout = new JLayoutFile('joomla.toolbar.batch');
 
        	$dhtml = $layout->render(array('title' => $title));
-       	$bar->appendButton('Custom', $dhtml, 'redate');
+       	$bar->appendButton('Custom', $dhtml, 'batch');
 
 
         JHtmlSidebar::setAction('index.php?option=com_jtodo');

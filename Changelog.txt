@@ -2,6 +2,10 @@ jToDo - Eine ToDo Liste für Joomla
 **********************************
 
 
+Änderungen in Version 2.1.2
+  [+] In der Stapelverarbeitung kann jetzt auch die Kategorie mit geändert werden
+2014-06-20
+
 Änderungen in Version 2.1.1
   [!] Benachrichtigungsmail hat jetzt auch einen Betreff
   [!] Benachrichtigungsmail kommt jetzt korrekt im HTML-Format

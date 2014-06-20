@@ -6,7 +6,7 @@
 // @implements  : Class jTODOModelTodo                                  //
 // @description : Model for the DB-Manipulation of a single             //
 //                jTODO-ToDo; not for the list                          //
-// Version      : 2.0.2                                                 //
+// Version      : 2.1.2                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -108,7 +108,7 @@ class jTODOModelTodo extends JModelAdmin
         }
     }
 
-    public function ReDateToDos($cid, $newDate, $newPublishedState, $newDoneState)
+    public function ReDateToDos($cid, $newDate)
     {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
@@ -117,16 +117,6 @@ class jTODOModelTodo extends JModelAdmin
         $query->set('targetdate = \''.JFactory::getDate($newDate, 'UTC')->toSQL().'\'');
         $query->set('updated = CURRENT_DATE');
         $query->WHERE('id in ('.implode(',', $cid).');');
-
-        if ($newDoneState != -99)
-        {
-           $this->setItemDoneStatus($cid, $newDoneState);
-        }
-
-        if ($newPublishedState != -99)
-        {
-           $this->publish($cid, $newPublishedState);
-        }
 
         $db->setQuery($query);
         $data = $db->Query();
@@ -138,6 +128,51 @@ class jTODOModelTodo extends JModelAdmin
         }
     }
 
+    public function setItemCategory($cid, $newCategory)
+    {
+    	$db    = JFactory::getDBO();
+    	$query = $db->getQuery(true);
+
+    	$query->update('#__jtodo_todos');
+    	$query->set('fk_category = '.$newCategory);
+    	$query->set('updated = CURRENT_DATE');
+    	$query->WHERE('id in ('.implode(',', $cid).');');
+
+    	$db->setQuery($query);
+    	$data = $db->Query();
+
+    	if ( $db->getAffectedRows() >= 1) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+
+    public function batch($cid, $newDate, $newPublishedState, $newDoneState, $newCategory)
+    {
+    	// Set a new Done-State?
+        if ($newDoneState != -99)
+        {
+           $this->setItemDoneStatus($cid, $newDoneState);
+        }
+        // Set a new Published-State?
+        if ($newPublishedState != -99)
+        {
+           $this->publish($cid, $newPublishedState);
+        }
+        // Set a new Targetdate?
+        if ($newDate != -99)
+        {
+           $this->ReDateToDos($cid, $newDate);
+        }
+		// Set a new Category?
+        if ($newCategory != -99)
+        {
+           $this->setItemCategory($cid, $newCategory);
+        }
+
+        return true;
+    }
 
 }
 ?>

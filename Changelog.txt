@@ -2,6 +2,11 @@ jToDo - Eine ToDo Liste für Joomla
 **********************************
 
 
+Änderungen in Version 2.1.3
+  [~] Das Senden der eMails bei Statusändeungen im FrontEnd findet jetzt still und leise statt.
+      es erscheinen nur noch Meldungen, wenn der Mailer direkt etwas zu bemängeln hat.
+2014-06-27
+
 Änderungen in Version 2.1.2
   [+] In der Stapelverarbeitung kann jetzt auch die Kategorie mit geändert werden
 2014-06-20

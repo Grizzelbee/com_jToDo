@@ -5,7 +5,7 @@
 // @file        : site/models/jtodo.php                                 //
 // @implements  : Class jTODOModeljTODO                                 //
 // @description : Model for the DB-Manipulation of the jToDo-List       //
-// Version      : 2.1.0                                                 //
+// Version      : 2.1.3                                                 //
 // *********************************************************************//
 
 // Check to ensure this file is included in Joomla!
@@ -157,6 +157,10 @@ class jTODOModeljTODO extends JModelLegacy
     	$body = str_replace( $textmarken, $daten, JText::_('COM_JTODO_MAILBODY_EDITED') ) ;
 
     	foreach($receipients as $receipient):
+	    	if ($receipient->email == '' )
+	    	{
+	    	   continue;
+	    	}
 	    	$successful = 0;
     		$mailer->ClearAllRecipients();
     		$mailer->addRecipient( $receipient->email );
@@ -164,12 +168,9 @@ class jTODOModeljTODO extends JModelLegacy
 	    	$mailbody = str_replace('[NAME]', $receipient->username, $body);
     		$mailer->setBody($mailbody);
 
-       	    if ( $mailer->Send() )
-	    	{
-	    	    JFactory::getApplication()->enqueueMessage( JText::_('COM_TODO_SINGLE_MAIL_SENT') );
-	    	}
+       	    $mailer->Send();
     	endforeach;
-    }
+	}
 
     public function notifyUsers($itemId)
     {
